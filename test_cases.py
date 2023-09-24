@@ -1,8 +1,8 @@
 from readProp import * 
 from data import *
 from llmUtil import *
-value = read_properties('OPENAPI_KEY')
-print(data)
 
+# read the embedding from database 
 collection = getCollectionToEmbed("fff2.db","ada-002")
+# search for term - sign in is supposed to match login
 entries = checkSimilar(collection,"sign in")
