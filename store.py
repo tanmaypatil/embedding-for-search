@@ -42,8 +42,8 @@ def processLine(line : str,testSection : str):
    if(line.strip().startswith("[") ):
       list = line.split("]")
       id += list[0]
-      id.strip("[")
-      content = list[1]
+      id=id.strip("[")
+      content = list[1].strip()
    else:
       lineNo = line[0:1]
       if (lineNo.isdigit()):
