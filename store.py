@@ -47,7 +47,8 @@ def processLine(line : str,testSection : str):
    else:
       lineNo = line[0:1]
       if (lineNo.isdigit()):
-        id += testSection + line
+        id = testSection + "-" + line.split(".")[0]
+        content =  line.split(".")[1].strip()
     
    return (id ,content)
     

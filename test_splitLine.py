@@ -18,5 +18,17 @@ def test_find_actions():
     tokens = processLine(line,None)
     assert tokens[0] == 'test-actions'
     assert tokens[1] == ''
+
+def test_find_actions1():
+    line = '1. go to url {open-project application}'
+    tokens = processLine(line,'test-actions')
+    assert tokens[0] == 'test-actions-1'
+    assert tokens[1] == 'go to url {open-project application}'
+
+def test_find_actions6():
+    line = '6. close browser'
+    tokens = processLine(line,'test-actions')
+    assert tokens[0] == 'test-actions-6'
+    assert tokens[1] == 'close browser'
     
     
