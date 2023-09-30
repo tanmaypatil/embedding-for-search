@@ -1,8 +1,8 @@
 from jproperties import Properties
 
-def read_properties(key):
+def readProperties(key):
    configs = Properties()
    with open('app.properties', 'rb') as config_file:
      configs.load(config_file)
-   print(f'Database User: {configs.get(key).data}') 
+   print(f'Property Value: {configs.get(key).data}') 
    return configs.get(key).data

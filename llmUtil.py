@@ -1,11 +1,12 @@
 import sqlite_utils
 import llm
 from readProp import *
+import os
 
 def getCollectionToEmbed(dbName,modelName):
   db = sqlite_utils.Database(dbName)
   embedding_model = llm.get_embedding_model(modelName)
-  embedding_model.key = read_properties('OPENAPI_KEY')
+  embedding_model.key = readProperties('OPENAPI_KEY')
   collection = llm.Collection("FFF2", db, model=embedding_model)
   return collection
 
@@ -17,3 +18,6 @@ def checkSimilar(collection : llm.Collection , searchStr : str) :
   for entry in entries:
     print(entry.id , entry.content,entry.score)
   return entries
+
+ 
+
