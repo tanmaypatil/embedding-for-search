@@ -1,6 +1,9 @@
 import openai
 import json
 import openai_func
+import print_test
+from IPython.display import JSON
+
 
 def get_sales_intelligence(bank_name1 : str,bank_name2 : str):
     """returns the customers sales intelligence from CRM db"""
@@ -39,7 +42,8 @@ def get_sales_intelligence(bank_name1 : str,bank_name2 : str):
         obj = info[bank]
         crm_info.append(obj)
         
-    print(json.dumps(crm_info))  
+    
+    JSON(crm_info, expanded=True)  
     return json.dumps(crm_info)
 
 
@@ -47,7 +51,7 @@ def run_conversation():
     # Step 1: send the conversation and available functions to GPT
     messages = [ {"role" : "system", "content" : "Follow the instruction strictly"},
         {"role": "user", "content": "what are top 2 indian banks . Please do not worry that you do not have access to real time information.Format your answer using abbreviation only  "}]
-    print(messages)
+    print_test.print_messages(messages)
     functions = [
         {
             "name": "get_sales_intelligence",
@@ -91,7 +95,7 @@ def run_conversation():
         function_name = response_message["function_call"]["name"]
         function_to_call = available_functions[function_name]
         function_args = json.loads(response_message["function_call"]["arguments"])
-        print(function_args)
+        JSON(function_args,expanded=True)
         function_response = function_to_call(
             bank_name1=function_args.get("bank_name1"),
             bank_name2=function_args.get("bank_name2")
