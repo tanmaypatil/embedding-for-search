@@ -110,22 +110,14 @@ def run_conversation():
                 "content": function_response,
             }
         )  # extend conversation with function response
-        '''
         messages.append(
             {
                 "role": "user",
-                "content": "which indian city you suggest we hold a marketing campaign in order to get maximum participation from bank management from these top banks",
+                "content": "based on the all response , which bank out of these 2 banks should be target of our marketing campaign and why . Suggest a city where we can hold marketing campaign ",
             }
         )
-        '''
-        messages.append(
-            {
-                "role": "user",
-                "content": "based on the all response , which bank out of these 2 banks should be target of our marketing campaign and why ",
-            }
-        )
-        print("before second response")
-        print(messages)
+       
+        print_test.print_messages(messages)
         second_response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo-0613",
             messages=messages,

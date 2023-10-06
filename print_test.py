@@ -1,7 +1,8 @@
 color_prefix_by_role = {
     "system": "\033[0m",  # gray
     "user": "\033[0m",  # gray
-    "assistant": "\033[92m",  # green
+    "assistant": "\033[92m",  # green,
+    "function": "\033[96m" # green
 }
 
 
@@ -13,10 +14,3 @@ def print_messages(messages, color_prefix_by_role=color_prefix_by_role) -> None:
         content = message["content"]
         print(f"{color_prefix}\n[{role}]\n{content}")
         
-messages = []
-message = {
-    "role" : "user",
-    "content" : "what are best banks in india"
-}
-messages.append(message)
-print_messages(messages=messages)
