@@ -1,8 +1,8 @@
 color_prefix_by_role = {
     "system": "\033[0m",  # gray
     "user": "\033[0m",  # gray
-    "assistant": "\033[92m",  # green,
-    "function": "\033[96m" # green
+    "assistant": "\033[34m",  # blue,
+    "function": "\033[35m" # magenta
 }
 
 
