@@ -30,5 +30,18 @@ def test_find_actions6():
     tokens = processLine(line,'test-actions')
     assert tokens[0] == 'test-actions-6'
     assert tokens[1] == 'close browser'
+
+'''    
+def test_find_argument():
+    print('test_find_argument')
+    line = '2. login to open project {{$ --user:open-project user name --password:open-project password}} on {element} using {css selector} from {attribute} filter {regex}'
+    tokens = processLine(line,'test-actions')
+    assert tokens[0] == 'test-actions-2'
+    assert tokens[1] == 'login to open project with arguments user=open-project user name and password=open-project password  on element using css selector from attribute filter regex'
     
-    
+'''    
+
+def test_find_argument():
+    line = '{{$ --user:open-project user name --password:open-project password}} on {element} using {css selector} from {attribute} filter {regex}'
+    conv_line = processArguments(line)
+    assert conv_line == ' user=open-project user name AND password=open-project password on element using css selector from attribute filter regex'
