@@ -6,9 +6,13 @@ import os
 def getCollectionToEmbed(dbName,modelName):
   db = sqlite_utils.Database(dbName)
   embedding_model = llm.get_embedding_model(modelName)
-  embedding_model.key = readProperties('OPENAPI_KEY')
+  embedding_model.key = readProperties('OPENAI_KEY')
   collection = llm.Collection("FFF2", db, model=embedding_model)
   return collection
+
+def getDb(dbName):
+  db = sqlite_utils.Database(dbName)
+  return db
 
 def embed(collection : llm.Collection , data : list):
   collection.embed_multi(data,store=True)  

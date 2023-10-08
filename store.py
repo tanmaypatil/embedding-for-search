@@ -1,6 +1,7 @@
 import pickle
 import logging
 import re
+from llmutil import *
 
 def addRecord(id : str , content :str , metadata :dict, list : list) :
     logging.debug(f'{id} adding a line into record')
