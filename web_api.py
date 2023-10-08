@@ -1,5 +1,5 @@
 import json
-from flask import Flask
+from flask import Flask, request
 from markupsafe import escape
 from llmUtil import *
 from llm import *
@@ -25,12 +25,13 @@ def embedding_exists():
   print(f"before sending response {json.dumps(ans)}")
   return ans
 
-@app.route("/checkSimilar")
+@app.route("/checkSimilar",methods=['POST', 'GET'])
 def check_similar():
   ans = { }
+  search_term = request.form['searchTerm']
   collection = getCollectionToEmbed("fff2.db","ada-002")
 # search for term - sign in is supposed to match login
-  entries = checkSimilar(collection,"find")
+  entries = checkSimilar(collection,search_term)
   ans["similar"] = entries
   return ans
   
