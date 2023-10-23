@@ -1,7 +1,7 @@
 import pickle
 import logging
 import re
-from llmutil import *
+from llmUtil import *
 
 def addRecord(id : str , content :str , metadata :dict, list : list) :
     logging.debug(f'{id} adding a line into record')
@@ -29,7 +29,7 @@ def loadATestScript(testFile):
     print(f' line count {l}')
     
     
-def loadAndTokenize(testFile):
+def loadAndTokenize(testFile : str ,meta_required :str = 'Yes' )-> list:
     logging.debug(f'loading a test file {testFile} ')
     f = open(testFile, "r")
     l = 0
@@ -39,7 +39,7 @@ def loadAndTokenize(testFile):
       l += 1
       metadata = {}
       metadata["line_no"] = l
-      metadata['file_name'] = testFile
+      metadata["file_name"] = testFile
       print(x)
       (id,content)= processLine(x,testSection)
       print(f" id {id} content {content}")
@@ -48,11 +48,15 @@ def loadAndTokenize(testFile):
       elif content == None or content =='':
         testSection = id   
     
-      if(content != None):
-        list_content.append((id,content,metadata))
+      if(content != None and content !=''):
+        if(meta_required == 'Yes'):
+          list_content.append((id,content,metadata))
+        else:
+            list_content.append((id,content))
     
     print(f' line count {l}')
     print (*list_content, sep="\n")
+    return list_content
     
 
 #loadATestScript('Test009BlocksAndModels.rhino')
